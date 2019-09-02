@@ -1,5 +1,5 @@
 //Using React Hooks
-
+/*
 import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
@@ -16,20 +16,20 @@ const App = props => {
       {name: "Vinay", age: 23}
     ],
   }
-)
+);
   //Multiple different states can exist by using Hooks
   const [ otherState, setOtherState ] = useState("This is other state")
 
-  const switchNameHandler = () => {
+  const switchNameHandler = (newName) => {
     //DONT USE THIS: this.state.persons[0].name = "Smithsonian";
     setPersonsState({
       persons: [
-        {name: "Smithsonian", age: 30},
+        {name: newName, age: 30},
         {name: "John", age: 25},
         {name: "Vinay", age: 24}
         ]
-    }); // Will overwrite the old Persons array with new one!!!
-  };
+    }) // Will overwrite the old Persons array with new one!!!
+  }
 
   return (
     <div className="App">
@@ -37,18 +37,28 @@ const App = props => {
       <p className="App-intro">
         This is a paragraph !!!
       </p>
-      <button onClick={switchNameHandler}>Switch Name</button>
-      <Person name={personsState.persons[0].name} age = {personsState.persons[0].age}/>
-      <Person name={personsState.persons[1].name} age = {personsState.persons[1].age}/>
-      <Person name={personsState.persons[2].name} age = {personsState.persons[2].age}> My Hobby is coding !!!</Person>
+      <button onClick={() => switchNameHandler("Sam")}>Switch Name</button>
+      <Person
+        name={personsState.persons[0].name}
+        age={personsState.persons[0].age}
+        click={switchNameHandler.bind(this,"Smithsonian")}/>
+      <Person
+        name={personsState.persons[1].name}
+        age={personsState.persons[1].age}/>
+      <Person
+        name={personsState.persons[2].name}
+        age={personsState.persons[2].age}>
+        My Hobby is coding !!!
+      </Person>
     </div>
   );
   //return React.createElement('div', {className: "App"}, React.createElement('h1', null, 'Hi, I am a React App !!!'));
 }
 
 export default App;
+ */
+//Using class component instead of hooks
 
-/*
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
@@ -64,12 +74,12 @@ class App extends Component {
     othervalue: "This wont be touched by changing state"
   }
 
-  switchNameHandler = () => {
+  switchNameHandler = (newName) => {
     //DONT USE THIS: this.state.persons[0].name = "Smithsonian";
     this.setState(
       {
         persons: [
-          {name: "Smithsonian", age: 30},
+          {name: newName, age: 30},
           {name: "John", age: 25},
           {name: "Vinay", age: 24}
         ]
@@ -84,8 +94,8 @@ class App extends Component {
         <p className="App-intro">
           This is a paragraph !!!
         </p>
-        <button onClick={this.switchNameHandler}>Switch Name</button>
-        <Person name={this.state.persons[0].name} age = {this.state.persons[0].age}/>
+        <button onClick={() => this.switchNameHandler('Smithsonian')}>Switch Name</button>
+        <Person name={this.state.persons[0].name} age = {this.state.persons[0].age} click={this.switchNameHandler.bind(this,'Sam')}/>
         <Person name={this.state.persons[1].name} age = {this.state.persons[1].age}/>
         <Person name={this.state.persons[2].name} age = {this.state.persons[2].age}> My Hobby is coding !!!</Person>
       </div>
@@ -95,4 +105,3 @@ class App extends Component {
 }
 
 export default App;
-*/
