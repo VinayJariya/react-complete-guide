@@ -95,9 +95,12 @@ class App extends Component {
   }
 
   deletePersonHandler = (personIndex) => {
-    const persons = this.state.persons;
+    //const persons = this.state.persons; Wrong approach as both are referencing to same array. Instead create a copy
+    //Two ways
+    //const persons = this.state.persons.slice(); Slicing without arguments makes a copy
+    const persons = [...this.state.persons]; //Spread Operator
     persons.splice(personIndex, 1);
-    this.setState({persons: persons})
+    this.setState({persons: persons});
   }
 
   render() {
