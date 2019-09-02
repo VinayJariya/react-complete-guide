@@ -76,15 +76,26 @@ class App extends Component {
   }
 
 
-  nameChangedHandler = (event) => {
+  nameChangedHandler = (event, id) => {
     //DONT USE THIS: this.state.persons[0].name = "Smithsonian";
+
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id;
+    });
+
+    const person = {
+      ...this.state.persons[personIndex]
+    };
+
+    person.name = event.target.value;
+
+    const persons = [...this.state.persons]
+    persons[personIndex] = person;
+
+    // const person = Object.assign({}, this.state.persons[personIndex]); Alternative
     this.setState(
       {
-        persons: [
-          {name: event.target.value, age: 30},
-          {name: "John", age: 25},
-          {name: "Vinay", age: 24}
-        ]
+        persons: persons
       }
     ) // Will only update the old Persons array with new one and merge the remaining properties !!!
   }
@@ -106,7 +117,7 @@ class App extends Component {
   render() {
 
     const style = {
-      backgroundColor: 'white',
+      backgroundColor: 'green',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
@@ -124,10 +135,13 @@ class App extends Component {
                     name={person.name}
                     age={person.age}
                     key={person.id}
+                    changed={(event) => this.nameChangedHandler(event, person.id)}
                   />
           })}
         </div>
-      )
+      );
+      style.backgroundColor = 'red';
+
     }
     return (
       <div className="App">
