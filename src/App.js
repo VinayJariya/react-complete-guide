@@ -87,6 +87,19 @@ class App extends Component {
     ) // Will only update the old Persons array with new one and merge the remaining properties !!!
   }
 
+  nameChangedHandler = (event) => {
+    //DONT USE THIS: this.state.persons[0].name = "Smithsonian";
+    this.setState(
+      {
+        persons: [
+          {name: event.target.value, age: 30},
+          {name: "John", age: 25},
+          {name: "Vinay", age: 24}
+        ]
+      }
+    ) // Will only update the old Persons array with new one and merge the remaining properties !!!
+  }
+
   render() {
     return (
       <div className="App">
@@ -95,9 +108,19 @@ class App extends Component {
           This is a paragraph !!!
         </p>
         <button onClick={() => this.switchNameHandler('Smithsonian')}>Switch Name</button>
-        <Person name={this.state.persons[0].name} age = {this.state.persons[0].age} click={this.switchNameHandler.bind(this,'Sam')}/>
-        <Person name={this.state.persons[1].name} age = {this.state.persons[1].age}/>
-        <Person name={this.state.persons[2].name} age = {this.state.persons[2].age}> My Hobby is coding !!!</Person>
+        <Person
+          name={this.state.persons[0].name}
+          age = {this.state.persons[0].age}
+          click={this.switchNameHandler.bind(this,'Sam')}
+          changed={this.nameChangedHandler}/>
+        <Person
+          name={this.state.persons[1].name}
+          age = {this.state.persons[1].age}/>
+        <Person
+          name={this.state.persons[2].name}
+          age = {this.state.persons[2].age}>
+          My Hobby is coding !!!
+        </Person>
       </div>
     );
     //return React.createElement('div', {className: "App"}, React.createElement('h1', null, 'Hi, I am a React App !!!'));
