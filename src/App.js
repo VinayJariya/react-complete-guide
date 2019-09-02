@@ -116,6 +116,27 @@ class App extends Component {
       cursor: 'pointer'
     };
 
+    let persons = null;
+
+    if (this.state.showPersons){
+      persons = (
+        <div>
+          <Person
+            name={this.state.persons[0].name}
+            age = {this.state.persons[0].age}
+            click={this.switchNameHandler.bind(this,'Sam')}
+            changed={this.nameChangedHandler}/>
+          <Person
+            name={this.state.persons[1].name}
+            age = {this.state.persons[1].age}/>
+          <Person
+            name={this.state.persons[2].name}
+            age = {this.state.persons[2].age}>
+            My Hobby is coding !!!
+          </Person>
+        </div>
+      )
+    }
     return (
       <div className="App">
         <h1 className="App-title">Hi I am a React App !!!</h1>
@@ -123,23 +144,7 @@ class App extends Component {
           This is a paragraph !!!
         </p>
         <button style={style} onClick={this.togglePersonHandler}>Toggle Persons</button>
-        { this.state.showPersons === true ?
-          <div >
-            <Person
-              name={this.state.persons[0].name}
-              age = {this.state.persons[0].age}
-              click={this.switchNameHandler.bind(this,'Sam')}
-              changed={this.nameChangedHandler}/>
-            <Person
-              name={this.state.persons[1].name}
-              age = {this.state.persons[1].age}/>
-            <Person
-              name={this.state.persons[2].name}
-              age = {this.state.persons[2].age}>
-              My Hobby is coding !!!
-            </Person>
-          </div> : null
-        }
+        {persons}
       </div>
     );
     //return React.createElement('div', {className: "App"}, React.createElement('h1', null, 'Hi, I am a React App !!!'));
