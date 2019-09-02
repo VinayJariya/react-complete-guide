@@ -63,7 +63,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Person from './Person/Person';
-import Radium from 'radium';
+import Radium, {StyleRoot} from 'radium';
 
 class App extends Component {
   state = {
@@ -162,14 +162,16 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
-        <h1 className="App-title">Hi I am a React App !!!</h1>
-        <p className={classes.join(' ')}>
-          This is a paragraph !!!
-        </p>
-        <button style={style} onClick={this.togglePersonHandler}>Toggle Persons</button>
-        {persons}
-      </div>
+      <StyleRoot>
+        <div className="App">
+          <h1 className="App-title">Hi I am a React App !!!</h1>
+          <p className={classes.join(' ')}>
+            This is a paragraph !!!
+          </p>
+          <button style={style} onClick={this.togglePersonHandler}>Toggle Persons</button>
+          {persons}
+        </div>
+      </StyleRoot>
     );
     //return React.createElement('div', {className: "App"}, React.createElement('h1', null, 'Hi, I am a React App !!!'));
   }
