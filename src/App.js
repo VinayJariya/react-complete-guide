@@ -75,18 +75,6 @@ class App extends Component {
     showPersons: false
   }
 
-  switchNameHandler = (newName) => {
-    //DONT USE THIS: this.state.persons[0].name = "Smithsonian";
-    this.setState(
-      {
-        persons: [
-          {name: newName, age: 30},
-          {name: "John", age: 25},
-          {name: "Vinay", age: 24}
-        ]
-      }
-    ) // Will only update the old Persons array with new one and merge the remaining properties !!!
-  }
 
   nameChangedHandler = (event) => {
     //DONT USE THIS: this.state.persons[0].name = "Smithsonian";
@@ -106,6 +94,12 @@ class App extends Component {
     this.setState({showPersons: !doesShow});
   }
 
+  deletePersonHandler = (personIndex) => {
+    const persons = this.state.persons;
+    persons.splice(personIndex, 1);
+    this.setState({persons: persons})
+  }
+
   render() {
 
     const style = {
@@ -121,8 +115,9 @@ class App extends Component {
     if (this.state.showPersons){
       persons = (
         <div>
-          {this.state.persons.map(person => {
+          {this.state.persons.map((person, index) => {
             return <Person
+                    click={() => this.deletePersonHandler(index)}
                     name={person.name}
                     age={person.age}
                   />
