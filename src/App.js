@@ -1,3 +1,54 @@
+//Using React Hooks
+
+import React, { useState } from 'react';
+import logo from './logo.svg';
+import './App.css';
+import Person from './Person/Person';
+
+const App = props => {
+  // useState return exactly 2 values
+  // 1st is the current setState
+  // 2nd is a function to change current state
+  const [ personsState, setPersonsState ] = useState({
+    persons : [
+      {name: "Smith", age: 30},
+      {name: "John", age: 25},
+      {name: "Vinay", age: 23}
+    ],
+  }
+)
+  //Multiple different states can exist by using Hooks
+  const [ otherState, setOtherState ] = useState("This is other state")
+
+  const switchNameHandler = () => {
+    //DONT USE THIS: this.state.persons[0].name = "Smithsonian";
+    setPersonsState({
+      persons: [
+        {name: "Smithsonian", age: 30},
+        {name: "John", age: 25},
+        {name: "Vinay", age: 24}
+        ]
+    }); // Will overwrite the old Persons array with new one!!!
+  };
+
+  return (
+    <div className="App">
+      <h1 className="App-title">Hi I am a React App !!!</h1>
+      <p className="App-intro">
+        This is a paragraph !!!
+      </p>
+      <button onClick={switchNameHandler}>Switch Name</button>
+      <Person name={personsState.persons[0].name} age = {personsState.persons[0].age}/>
+      <Person name={personsState.persons[1].name} age = {personsState.persons[1].age}/>
+      <Person name={personsState.persons[2].name} age = {personsState.persons[2].age}> My Hobby is coding !!!</Person>
+    </div>
+  );
+  //return React.createElement('div', {className: "App"}, React.createElement('h1', null, 'Hi, I am a React App !!!'));
+}
+
+export default App;
+
+/*
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
@@ -44,3 +95,4 @@ class App extends Component {
 }
 
 export default App;
+*/
