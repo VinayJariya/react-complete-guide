@@ -66,16 +66,30 @@ import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
-  state = {
-    persons : [
-      {id: 1, name: "Smith", age: 30},
-      {id: 2, name: "John", age: 25},
-      {id: 3, name: "Vinay", age: 23}
-    ],
-    othervalue: "This wont be touched by changing state",
-    showPersons: false
+
+  constructor(props){
+    super(props);
+    console.log('[App.js] constructor');
+    this.state = {
+      persons : [
+        {id: 1, name: "Smith", age: 30},
+        {id: 2, name: "John", age: 25},
+        {id: 3, name: "Vinay", age: 23}
+      ],
+      othervalue: "This wont be touched by changing state",
+      showPersons: false
+    }
   }
 
+
+  static getDerivedStateFromProps(props, state){
+    console.log('[App.js] getDerivedStateFromProps', props);
+    return state;
+  }
+
+  componentDidMount(){
+    console.log('[App.js] componentDidMount');
+  }
 
   nameChangedHandler = (event, id) => {
     //DONT USE THIS: this.state.persons[0].name = "Smithsonian";
@@ -116,6 +130,8 @@ class App extends Component {
   }
 
   render() {
+    console.log('[App.js] render');
+
     let persons = null;
     if (this.state.showPersons){
       persons = (
