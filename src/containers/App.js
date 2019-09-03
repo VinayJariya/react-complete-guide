@@ -91,6 +91,15 @@ class App extends Component {
     console.log('[App.js] componentDidMount');
   }
 
+  shouldComponentUpdate(prevProps, prevState){
+    console.log('[App.js] shouldComponentUpdate');
+    return true;
+  }
+
+  componentDidUpdate(){
+    console.log('[App.js] componentDidUpdate');
+  }
+
   nameChangedHandler = (event, id) => {
     //DONT USE THIS: this.state.persons[0].name = "Smithsonian";
 
