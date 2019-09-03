@@ -1,7 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from './Cockpit.css';
 
-const cockpit = (props) => {
+const Cockpit = ( props ) => {
+
+  useEffect(() => {
+    console.log('[Cockpit.js] useEffect');
+    setTimeout(() => {
+      alert('First time rendering !!!')
+    },1000)
+  }, []); //Executes first time only
+
+  useEffect(() => {
+    console.log('[Cockpit.js] useEffect');
+    setTimeout(() => {
+      alert('Update happened on person!!!')
+    },1000)
+  }, [props.persons]); //Executes first time and every time a person is changed
 
   let btnClass = '';
 
@@ -30,4 +44,4 @@ const cockpit = (props) => {
   );
 };
 
-export default cockpit;
+export default Cockpit;
