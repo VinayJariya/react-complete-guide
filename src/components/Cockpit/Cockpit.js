@@ -11,10 +11,13 @@ const Cockpit = ( props ) => {
   }, []); //Executes first time only
 
   useEffect(() => {
-    console.log('[Cockpit.js] useEffect');
+    console.log('[Cockpit.js] 2nd useEffect');
     setTimeout(() => {
       alert('Update happened on person!!!')
-    },1000)
+    },1000);
+    return () => {
+      console.log('[Cockpit.js] cleanup work on 2nd useEffect');
+    };
   }, [props.persons]); //Executes first time and every time a person is changed
 
   let btnClass = '';
