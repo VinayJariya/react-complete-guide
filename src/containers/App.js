@@ -62,8 +62,8 @@ export default App;
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import classes from './App.css';
-import Person from './Person/Person';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+import Person from '../components/Persons/Person/Person';
+import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
   state = {
