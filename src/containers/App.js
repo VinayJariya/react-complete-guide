@@ -80,6 +80,7 @@ class App extends Component {
       othervalue: "This wont be touched by changing state",
       showPersons: false,
       showCockpit: true,
+      changeCounter: 0,
     }
   }
 
@@ -119,12 +120,14 @@ class App extends Component {
     persons[personIndex] = person;
 
     // const person = Object.assign({}, this.state.persons[personIndex]); Alternative
-    this.setState(
-      {
-        persons: persons
-      }
-    ) // Will only update the old Persons array with new one and merge the remaining properties !!!
-  }
+    this.setState((prevState, props) => {
+      return {
+          persons: persons,
+          changeCounter: prevState.changeCounter + 1
+        };
+    });
+    // Will only update the old Persons array with new one and merge the remaining properties !!!
+  };
 
   togglePersonHandler = () => {
     const doesShow = this.state.showPersons;
