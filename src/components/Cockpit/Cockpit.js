@@ -6,19 +6,19 @@ const Cockpit = ( props ) => {
   useEffect(() => {
     console.log('[Cockpit.js] useEffect');
     setTimeout(() => {
-      alert('First time rendering !!!')
-    },1000)
+      alert('Saved data to cloud!!!')
+    },1000);
+    return () => {
+      console.log('[Cockpit.js] cleanup work on useEffect');
+    };
   }, []); //Executes first time only
 
   useEffect(() => {
     console.log('[Cockpit.js] 2nd useEffect');
-    setTimeout(() => {
-      alert('Update happened on person!!!')
-    },1000);
     return () => {
       console.log('[Cockpit.js] cleanup work on 2nd useEffect');
     };
-  }, [props.persons]); //Executes first time and every time a person is changed
+  }); //Executes first time and every time a person is changed
 
   let btnClass = '';
 
@@ -27,10 +27,10 @@ const Cockpit = ( props ) => {
   }
 
   const classesAssigned = [];
-  if (props.persons.length <= 2){
+  if (props.personsLength <= 2){
     classesAssigned.push(classes.red);
   }
-  if (props.persons.length <= 1){
+  if (props.personsLength <= 1){
     classesAssigned.push(classes.bold);
   }
 
@@ -47,4 +47,4 @@ const Cockpit = ( props ) => {
   );
 };
 
-export default Cockpit;
+export default React.memo(Cockpit);
