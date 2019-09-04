@@ -10,7 +10,7 @@ static getDerivedStateFromProps(props, state){
 
 shouldComponentUpdate(nextProps, nextState){
   console.log('[Persons.js] shouldComponentUpdate');
-  return true;
+  return nextProps.persons !== this.props.persons;
 }
 
 getSnapshotBeforeUpdate(prevProps, prevState){
