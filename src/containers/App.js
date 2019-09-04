@@ -60,7 +60,6 @@ export default App;
 //Using class component instead of hooks
 
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
